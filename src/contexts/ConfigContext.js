@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
 export const configStartingValues = {
-  difficulty: "easy",
-  numberOfQuestions: 10,
+  difficulty: "medium",
+  numberOfQuestions: 20,
 }
 
 export default createContext(configStartingValues);
