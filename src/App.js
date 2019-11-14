@@ -1,34 +1,45 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import React, { useContext, createContext } from 'react';
+import { CssBaseline, Container, Paper, Box, createMuiTheme } from '@material-ui/core';
 
-import NavBar from './components/NavBar';
-import Question from './components/Question';
+import MainMenu from './components/MainMenu';
+import { ThemeProvider } from '@material-ui/styles';
 
-const testQuestion = {
-  "category": "Science: Computers",
-  "type": "multiple",
-  "difficulty": "easy",
-  "question": "What does CPU stand for?",
-  "correct": "Central Processing Unit",
-  "alternatives": [
-      "Central Processor Unit",
-      "Computer Personal Unit",
-      "Central Processing Unit",
-      "Central Process Unit"
-  ]
-};
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  },
+});
+
+const GameContext = createContext({
+  mode: null,
+  score: 0,
+  currentQuestion: 0,
+  questions: null,
+});
+
+const ConfigContext = createContext({
+  difficulty: "easy",
+  numberOfQuestions: 10,
+});
 
 
 const App = () => (
-  <Container>
-    <CssBaseline />
-    <NavBar />
-    <Question question={testQuestion} />
-  </Container>
+  <ConfigContext.Provider>
+  <GameContext.Provider>
+  <ThemeProvider theme={theme}>
+  <Box m={2}>
+    <Container mt={2}maxWidth="md">
+      <CssBaseline />
+      <Paper>
+        <Box p={2}>
+          <MainMenu />
+        </Box>
+      </Paper>
+    </Container>
+  </Box>
+  </ThemeProvider>
+  </GameContext.Provider>
+  </ConfigContext.Provider>
 );
 
 

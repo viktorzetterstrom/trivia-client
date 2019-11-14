@@ -8,8 +8,8 @@ const NavBar = () => {
         <div>
         <AppBar position="static">
             <Toolbar>
-                <Typography variant="h5" color="inherit">
-                  Open Trivia Game
+                <Typography variant="h5" component="p" color="inherit">
+                  Navbar
                 </Typography>
             </Toolbar>
         </AppBar>
