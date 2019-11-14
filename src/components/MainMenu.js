@@ -1,45 +1,62 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Typography, Button, ButtonGroup } from '@material-ui/core';
 
+import ConfigContext from '../contexts/ConfigContext';
 
-const MainMenu = () => (
-  <>
-    <Box m={2}>
-      <Typography variant="h5" component="p">Difficulty</Typography>
-      <ButtonGroup 
-        fullWidth
-        variant="contained"
-        size="large"
-        aria-label="full width contained primary button group">
-          <Button>Easy</Button>
-          <Button>Medium</Button>
-          <Button color="primary">Hard</Button>
-      </ButtonGroup>
-    </Box>
+const difficulties = ['easy', 'medium', 'hard'];
+const numberOfQuestions = [10, 20, 30];
 
-    <Box m={2}>
-      <Typography variant="h5" component="p">Questions</Typography>
-      <ButtonGroup 
-        fullWidth
-        variant="contained"
-        size="large"
-        aria-label="full width contained primary button group">
-          <Button color="primary">10</Button>
-          <Button>20</Button>
-          <Button>30</Button>
-      </ButtonGroup>
-    </Box>
 
-    <Box m={2}>
-      <Button
-        fullWidth
-        variant="contained"
-        color="Secondary"
-        size="large">
-          Start
-        </Button>
-    </Box>
-  </>
-)
+const MainMenu = () => {
+  const configContext = useContext(ConfigContext);
+
+  return (
+    <>
+      <Box m={2}>
+        <Typography variant="h5" component="p">Difficulty</Typography>
+        <ButtonGroup 
+          fullWidth
+          variant="contained"
+          size="large"
+          aria-label="full width contained primary button group">
+            {
+              difficulties.map((d, i) => <Button 
+                key={i}
+                color={d === configContext.config.difficulty ? 'primary' : ''}>
+                  {d}
+              </Button>)
+            }
+        </ButtonGroup>
+      </Box>
+
+      <Box m={2}>
+        <Typography variant="h5" component="p">Questions</Typography>
+        <ButtonGroup 
+          fullWidth
+          variant="contained"
+          size="large"
+          aria-label="full width contained primary button group">
+            {
+              numberOfQuestions.map((d, i) => <Button 
+                key={i}
+                color={d === configContext.config.numberOfQuestions ? 'primary' : ''}>
+                  {d}
+              </Button>)
+            }
+        </ButtonGroup>
+      </Box>
+
+      <Box m={2}>
+        <Button
+          fullWidth
+          variant="contained"
+          color="secondary"
+          size="large">
+            Start
+          </Button>
+      </Box>
+    </>
+  )
+};
 
 export default MainMenu;
