@@ -20,7 +20,13 @@ const App = () => {
       <Container maxWidth="sm">
         <Paper>
           <Box p={2}>
-            <MainMenu />
+
+            {
+              game.running
+                ? <></>
+                : <MainMenu />
+            }
+
           </Box>
         </Paper>
       </Container>
