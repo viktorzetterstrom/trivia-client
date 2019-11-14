@@ -10,6 +10,9 @@ const numberOfQuestions = [10, 20, 30];
 const MainMenu = () => {
   const configContext = useContext(ConfigContext);
 
+  const changeDifficulty = (d) => configContext.setConfig({...configContext.config, difficulty: d});
+  const changeNumberOfQuestions = (q) => configContext.setConfig({...configContext.config, numberOfQuestions: q});
+
   return (
     <>
       <Box m={2}>
@@ -20,7 +23,8 @@ const MainMenu = () => {
           size="large"
           aria-label="full width contained primary button group">
             {
-              difficulties.map((d, i) => <Button 
+              difficulties.map((d, i) => <Button
+                onClick={() => changeDifficulty(d)}
                 key={i}
                 color={d === configContext.config.difficulty ? 'primary' : ''}>
                   {d}
@@ -37,10 +41,11 @@ const MainMenu = () => {
           size="large"
           aria-label="full width contained primary button group">
             {
-              numberOfQuestions.map((d, i) => <Button 
+              numberOfQuestions.map((q, i) => <Button 
+              onClick={() => changeNumberOfQuestions(q)}
                 key={i}
-                color={d === configContext.config.numberOfQuestions ? 'primary' : ''}>
-                  {d}
+                color={q === configContext.config.numberOfQuestions ? 'primary' : ''}>
+                  {q}
               </Button>)
             }
         </ButtonGroup>
