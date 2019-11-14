@@ -16,6 +16,9 @@ const MainMenu = () => {
   return (
     <>
       <Box m={2}>
+        <Typography variant="h4" component="h1">Zetterström Trivia</Typography>
+      </Box>
+      <Box m={2}>
         <Typography variant="h5" component="p">Difficulty</Typography>
         <ButtonGroup 
           fullWidth
