@@ -3,6 +3,7 @@ import { Box, Typography, Button, ButtonGroup } from '@material-ui/core';
 
 import ConfigContext from '../contexts/ConfigContext';
 import GameContext from '../contexts/GameContext';
+import triviaService from '../trivia-service';
 
 const difficulties = ['easy', 'medium', 'hard'];
 const numberOfQuestions = [10, 20, 30];
@@ -14,7 +15,11 @@ const MainMenu = () => {
 
   const changeDifficulty = (d) => configContext.setConfig({...configContext.config, difficulty: d});
   const changeNumberOfQuestions = (q) => configContext.setConfig({...configContext.config, numberOfQuestions: q});
-  const startGame = () => gameContext.setGame({...gameContext.config, running: true});
+  const startGame = async () => gameContext.setGame({
+    ...gameContext.config, 
+    running: true,
+    questions: await triviaService.questions(configContext.config),
+  });
 
   return (
     <>

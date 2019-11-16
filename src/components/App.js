@@ -6,6 +6,7 @@ import theme from '../theme';
 import MainMenu from './MainMenu';
 import GameContext, { gameStartingValues } from '../contexts/GameContext';
 import ConfigContext, { configStartingValues } from '../contexts/ConfigContext';
+import Game from './Game';
 
 const App = () => {
   const [game, setGame] = useState(gameStartingValues);
@@ -23,7 +24,7 @@ const App = () => {
 
             {
               game.running
-                ? <></>
+                ? <Game />
                 : <MainMenu />
             }
 
