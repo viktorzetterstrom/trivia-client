@@ -14,7 +14,7 @@ const MainMenu = () => {
   const gameContext = useContext(GameContext);
 
   const changeDifficulty = (d) => configContext.setConfig({...configContext.config, difficulty: d});
-  const changeNumberOfQuestions = (q) => configContext.setConfig({...configContext.config, numberOfQuestions: q});
+  const changeNumberOfQuestions = (q) => configContext.setConfig({...configContext.config, amount: q});
   const startGame = async () => gameContext.setGame({
     ...gameContext.config, 
     running: true,
@@ -55,7 +55,7 @@ const MainMenu = () => {
               numberOfQuestions.map((q, i) => <Button 
               onClick={() => changeNumberOfQuestions(q)}
                 key={i}
-                color={q === configContext.config.numberOfQuestions ? 'primary' : ''}>
+                color={q === configContext.config.amount ? 'primary' : ''}>
                   {q}
               </Button>)
             }
