@@ -1,8 +1,8 @@
 import { createContext } from 'react';
 
-export const configStartingValues = {
+export const configStartingContext = {
   difficulty: "medium",
   amount: 20,
 }
 
-export default createContext(configStartingValues);
+export default createContext(configStartingContext);

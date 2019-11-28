@@ -1,10 +1,10 @@
 import { createContext } from 'react';
 
-export const gameStartingValues = {
+export const gameStartingContext = {
   mode: undefined,
   score: 0,
-  currentQuestion: 0,
+  questionIndex: 0,
   questions: undefined,
 };
 
-export default createContext(gameStartingValues);
+export default createContext(gameStartingContext);

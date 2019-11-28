@@ -4,13 +4,13 @@ import { ThemeProvider } from '@material-ui/styles';
 
 import theme from '../theme';
 import MainMenu from './MainMenu';
-import GameContext, { gameStartingValues } from '../contexts/GameContext';
-import ConfigContext, { configStartingValues } from '../contexts/ConfigContext';
+import GameContext, { gameStartingContext } from '../contexts/GameContext';
+import ConfigContext, { configStartingContext } from '../contexts/ConfigContext';
 import Game from './Game';
 
 const App = () => {
-  const [game, setGame] = useState(gameStartingValues);
-  const [config, setConfig] = useState(configStartingValues);
+  const [game, setGame] = useState(gameStartingContext);
+  const [config, setConfig] = useState(configStartingContext);
 
   return (
     <ConfigContext.Provider value={{config, setConfig}}>
