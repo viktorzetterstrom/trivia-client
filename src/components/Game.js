@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import Question from './Question';
 
-import GameContext from '../contexts/GameContext';
+const Game = ({game, gameDispatch}) => {
 
-const Game = () => {
-  const gameContext = useContext(GameContext);
-  const game = gameContext.game;
+  const answerHandler = answer => gameDispatch({
+    type: 'answer question',
+    answer
+  })
 
-  return <Question question={game.questions[0]} />
+  return <Question question={game.activeQuestion} answerHandler={answerHandler} />
 }
 
 export default Game;  

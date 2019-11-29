@@ -1,24 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box, Typography, Button, ButtonGroup } from '@material-ui/core';
 
-import ConfigContext from '../contexts/ConfigContext';
-import GameContext from '../contexts/GameContext';
 import triviaService from '../trivia-service';
 
 const difficulties = ['easy', 'medium', 'hard'];
 const numberOfQuestions = [10, 20, 30];
 
+const MainMenu = ({ config, configDispatch, gameDispatch }) => {
 
-const MainMenu = () => {
-  const configContext = useContext(ConfigContext);
-  const gameContext = useContext(GameContext);
-
-  const changeDifficulty = (d) => configContext.setConfig({...configContext.config, difficulty: d});
-  const changeNumberOfQuestions = (q) => configContext.setConfig({...configContext.config, amount: q});
-  const startGame = async () => gameContext.setGame({
-    ...gameContext.config, 
-    running: true,
-    questions: await triviaService.questions(configContext.config),
+  const changeDifficulty = (d) => configDispatch({type: `difficulty ${d}`});
+  const changeNumberOfQuestions = (q) => configDispatch({type: `amount ${q}`});
+  const startGame = async () => gameDispatch({
+    type: 'set questions',
+    questions: await triviaService.questions(config)
   });
 
   return (
@@ -37,7 +31,7 @@ const MainMenu = () => {
               difficulties.map((d, i) => <Button
                 onClick={() => changeDifficulty(d)}
                 key={i}
-                color={d === configContext.config.difficulty ? 'primary' : ''}>
+                color={d === config.difficulty ? 'primary' : ''}>
                   {d}
               </Button>)
             }
@@ -55,7 +49,7 @@ const MainMenu = () => {
               numberOfQuestions.map((q, i) => <Button 
               onClick={() => changeNumberOfQuestions(q)}
                 key={i}
-                color={q === configContext.config.amount ? 'primary' : ''}>
+                color={q === config.amount ? 'primary' : ''}>
                   {q}
               </Button>)
             }
