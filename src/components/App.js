@@ -21,6 +21,7 @@ const App = () => {
       <Container maxWidth="sm">
         <Paper>
           <Box p={2}>
+
             {
               game.questions.length > 0
                 ? <Game game={game} gameDispatch={gameDispatch} />

@@ -13,7 +13,8 @@
     "start-dev": "PORT=3002 NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && aws s3 sync build/ s3://trivia.zetterstrom.dev --acl public-read"
   },
   "eslintConfig": {
     "extends": "react-app"
