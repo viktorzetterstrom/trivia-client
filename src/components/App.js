@@ -6,6 +6,8 @@ import theme from '../theme';
 import MainMenu from './MainMenu';
 import ScoreBoard from './ScoreBoard';
 import Game from './Game';
+import ProgressBar from './ProgressBar';
+
 
 import gameState from '../states/gameState';
 
@@ -18,7 +20,10 @@ const App = () => {
     <Box mt={4}>
       <Container maxWidth="sm">
         <Paper>
-          <Box p={2}>
+          <Box pt={2}>
+            <ProgressBar game={game} />
+          </Box>
+          <Box p={1}>
 
             {
               game.questions.length > 0
