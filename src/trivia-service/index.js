@@ -1,7 +1,7 @@
 const qs = require('querystring');
 
 const apiUrl = process.env.NODE_ENV === 'development'
-  ? 'https://localhost:4443/trivia'
+  ? 'http://localhost:4002'
   : 'https://api.zetterstrom.dev/trivia';
 
 const triviaService = {

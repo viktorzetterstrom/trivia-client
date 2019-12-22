@@ -8,11 +8,17 @@ const numberOfQuestions = [10, 20, 30];
 
 const MainMenu = ({ config, configDispatch, gameDispatch }) => {
 
-  const changeDifficulty = (d) => configDispatch({type: `difficulty ${d}`});
-  const changeNumberOfQuestions = (q) => configDispatch({type: `amount ${q}`});
+  const changeDifficulty = (d) => configDispatch({
+    type: `difficulty`,
+    difficulty: d,
+  });
+  const changeNumberOfQuestions = (q) => configDispatch({
+    type: `amount`,
+    amount: q,
+  });
   const startGame = async () => gameDispatch({
     type: 'set questions',
-    questions: await triviaService.questions(config)
+    questions: await triviaService.questions(config),
   });
 
   return (
