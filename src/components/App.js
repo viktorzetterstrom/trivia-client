@@ -26,7 +26,7 @@ const App = () => {
           <Box p={1}>
 
             {
-              game.questions.length > 0
+              game.activeQuestion !== undefined
                 ? <Game game={game} gameDispatch={gameDispatch} />
                 : <MainMenu game={game} gameDispatch={gameDispatch} />
             }

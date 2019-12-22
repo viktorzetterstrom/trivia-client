@@ -1,6 +1,6 @@
 
 const initial = {
-  activeQuestion: null,
+  activeQuestion: undefined,
   questions: [],
   score: 0,
   config: {
