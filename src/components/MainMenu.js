@@ -6,25 +6,25 @@ import triviaService from '../trivia-service';
 const difficulties = ['easy', 'medium', 'hard'];
 const numberOfQuestions = [10, 20, 30];
 
-const MainMenu = ({ config, configDispatch, gameDispatch }) => {
+const MainMenu = ({ game, gameDispatch }) => {
 
-  const changeDifficulty = (d) => configDispatch({
+  const changeDifficulty = (d) => gameDispatch({
     type: `difficulty`,
     difficulty: d,
   });
-  const changeNumberOfQuestions = (q) => configDispatch({
+  const changeNumberOfQuestions = (q) => gameDispatch({
     type: `amount`,
     amount: q,
   });
   const startGame = async () => gameDispatch({
     type: 'set questions',
-    questions: await triviaService.questions(config),
+    questions: await triviaService.questions((game.config)),
   });
 
   return (
     <>
       <Box m={2}>
-        <Typography variant="h4" component="h1">Zetterström Trivia</Typography>
+        <Typography variant="h4" component="h1">Open Trivia</Typography>
       </Box>
       <Box m={2}>
         <Typography variant="h5" component="p">Difficulty</Typography>
@@ -37,7 +37,7 @@ const MainMenu = ({ config, configDispatch, gameDispatch }) => {
               difficulties.map((d, i) => <Button
                 onClick={() => changeDifficulty(d)}
                 key={i}
-                color={d === config.difficulty ? 'primary' : ''}>
+                color={d === game.config.difficulty ? 'primary' : ''}>
                   {d}
               </Button>)
             }
@@ -55,7 +55,7 @@ const MainMenu = ({ config, configDispatch, gameDispatch }) => {
               numberOfQuestions.map((q, i) => <Button 
               onClick={() => changeNumberOfQuestions(q)}
                 key={i}
-                color={q === config.amount ? 'primary' : ''}>
+                color={q === game.config.amount ? 'primary' : ''}>
                   {q}
               </Button>)
             }

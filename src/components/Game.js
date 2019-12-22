@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Question from './Question';
+import ProgressBar from './ProgressBar';
 
 const Game = ({game, gameDispatch}) => {
 
@@ -9,7 +10,12 @@ const Game = ({game, gameDispatch}) => {
     answer
   })
 
-  return <Question question={game.activeQuestion} answerHandler={answerHandler} />
+  return (
+    <>
+      <ProgressBar />
+      <Question question={game.activeQuestion} answerHandler={answerHandler} />
+    </>
+  )
 }
 
 export default Game;  

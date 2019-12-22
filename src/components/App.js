@@ -8,11 +8,9 @@ import ScoreBoard from './ScoreBoard';
 import Game from './Game';
 
 import gameState from '../states/gameState';
-import configState from '../states/configState';
 
 const App = () => {
   const [game, gameDispatch] = useReducer(gameState.reducer, gameState.initial);
-  const [config, configDispatch] = useReducer(configState.reducer, configState.initial);
 
   return (
     <ThemeProvider theme={theme}>
@@ -25,7 +23,7 @@ const App = () => {
             {
               game.questions.length > 0
                 ? <Game game={game} gameDispatch={gameDispatch} />
-                : <MainMenu config={config} configDispatch={configDispatch} gameDispatch={gameDispatch} />
+                : <MainMenu game={game} gameDispatch={gameDispatch} />
             }
 
           </Box>
