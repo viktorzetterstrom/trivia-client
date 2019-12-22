@@ -4,14 +4,11 @@ import {
   Typography,
   Button,
   ButtonGroup,
-  InputLabel,
   Select,
   FormControl } from '@material-ui/core';
 
 import triviaService from '../trivia-service';
 import config from '../config';
-
-console.log(config);
 
 const difficulties = config.difficulties;
 const numberOfQuestions = config.numberOfQuestions;
@@ -53,7 +50,7 @@ const MainMenu = ({ game, gameDispatch }) => {
             id="category-select"
             native
             value={game.config.category}
-            onChange={(e) => console.log(e.target) || changeCategory(e.target.value)}>
+            onChange={(e) => changeCategory(e.target.value)}>
           {
             categories.map(({ id, name }, i) => (
               <option key={id} value={id}>{name}</option>
