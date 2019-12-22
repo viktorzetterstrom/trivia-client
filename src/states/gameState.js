@@ -6,6 +6,7 @@ const initial = {
   config: {
     difficulty: 'medium',
     amount: 20,
+    category: 0, // id for the 'any'-category
   },
 };
 

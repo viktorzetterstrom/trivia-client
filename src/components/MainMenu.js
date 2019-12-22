@@ -1,5 +1,12 @@
 import React from 'react';
-import { Box, Typography, Button, ButtonGroup } from '@material-ui/core';
+import {
+  Box,
+  Typography,
+  Button,
+  ButtonGroup,
+  InputLabel,
+  Select,
+  FormControl } from '@material-ui/core';
 
 import triviaService from '../trivia-service';
 import config from '../config';
@@ -8,7 +15,7 @@ console.log(config);
 
 const difficulties = config.difficulties;
 const numberOfQuestions = config.numberOfQuestions;
-const categories = config.categories.map(({ name }) => name);
+const categories = config.categories;
 
 const MainMenu = ({ game, gameDispatch }) => {
 
@@ -16,10 +23,17 @@ const MainMenu = ({ game, gameDispatch }) => {
     type: `difficulty`,
     difficulty: d,
   });
+
   const changeNumberOfQuestions = (q) => gameDispatch({
     type: `amount`,
     amount: q,
   });
+
+  const changeCategory = (c) => gameDispatch({
+    type: 'category',
+    category: c,
+  });
+
   const startGame = async () => gameDispatch({
     type: 'set questions',
     questions: await triviaService.questions((game.config)),
@@ -30,6 +44,32 @@ const MainMenu = ({ game, gameDispatch }) => {
       <Box m={2}>
         <Typography variant="h4" component="h1">Open Trivia</Typography>
       </Box>
+
+
+      <Box m={2}>
+      <Typography variant="h5" component="p">Category</Typography>
+        <FormControl>
+          <Select
+            id="category-select"
+            native
+            value={game.config.category}
+            onChange={(e) => console.log(e.target) || changeCategory(e.target.value)}>
+          {
+            categories.map(({ id, name }, i) => (
+              <option key={id} value={id}>{name}</option>
+            ))
+          }
+          </Select>
+        </FormControl>
+        {
+          game.config.category !== 0 && (
+            <Typography variant="body2">
+              Note that not all categories have questions of all difficulties, if the game does not start, try a different category.
+            </Typography>
+          )
+        }
+      </Box>
+
       <Box m={2}>
         <Typography variant="h5" component="p">Difficulty</Typography>
         <ButtonGroup 
