@@ -6,5 +6,5 @@ const calculateProgress = (game) => game.activeQuestion !== undefined
   : 0;
 
 export default ({ game }) => (
-  <LinearProgress variant="determinate" value={calculateProgress(game)} />
+  <LinearProgress color="secondary" variant="determinate" value={calculateProgress(game)} />
 );

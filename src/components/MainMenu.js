@@ -2,9 +2,13 @@ import React from 'react';
 import { Box, Typography, Button, ButtonGroup } from '@material-ui/core';
 
 import triviaService from '../trivia-service';
+import config from '../config';
 
-const difficulties = ['easy', 'medium', 'hard'];
-const numberOfQuestions = [10, 20, 30];
+console.log(config);
+
+const difficulties = config.difficulties;
+const numberOfQuestions = config.numberOfQuestions;
+const categories = config.categories.map(({ name }) => name);
 
 const MainMenu = ({ game, gameDispatch }) => {
 
